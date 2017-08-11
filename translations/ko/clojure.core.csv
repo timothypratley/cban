@@ -1,5 +1,5 @@
 existing,alias,docstring,comment
-aget,배열을얻을
+aget,배열을얻을,"fun , "
 and,과
 apply,대다
 aset,세트
