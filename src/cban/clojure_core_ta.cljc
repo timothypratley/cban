@@ -12,7 +12,7 @@
 (def அணு
   clojure.core/atom)
 
-(def பூலியன்}}
+(def பூலியன்
   clojure.core/boolean)
 
 (def கடைசியின்றி
@@ -62,8 +62,9 @@
 (def ஒவ்வொன்றுமா?
   clojure.core/every?)
 
-(def பொய்மை
-  clojure.core/false)
+(defmacro பொய்மை
+  [& body]
+  `(false ~@body))
 
 (def பொய்மையா?
   clojure.core/false?)
@@ -189,8 +190,9 @@
 (def எடு-என்னும்வரை
   clojure.core/take-while)
 
-(def வாய்மை
-  clojure.core/true)
+(defmacro வாய்மை
+  [& body]
+  `(true ~@body))
 
 (def உண்மையா?
   clojure.core/true?)

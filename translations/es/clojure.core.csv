@@ -54,7 +54,6 @@ let,deja
 and,y
 or,o
 not,no
-else,más,,or "otro"
 loop,darvuelta,,actually two words "dar vuelta"
 doseq,hazsec
 for,para,,could be por, but I think para fits the function better

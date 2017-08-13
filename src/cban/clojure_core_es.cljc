@@ -61,15 +61,12 @@
 (def baja-mientras
   clojure.core/drop-while)
 
-(def más
-  ""
-  clojure.core/else)
-
 (def cada?
   clojure.core/every?)
 
-(def falso
-  clojure.core/false)
+(defmacro falso
+  [& body]
+  `(false ~@body))
 
 (def falso?
   clojure.core/false?)
@@ -202,8 +199,9 @@
 (def toma-mientras
   clojure.core/take-while)
 
-(def cierto
-  clojure.core/true)
+(defmacro cierto
+  [& body]
+  `(true ~@body))
 
 (def cierto?
   clojure.core/true?)

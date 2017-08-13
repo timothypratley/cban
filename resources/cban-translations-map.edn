@@ -56,13 +56,8 @@
    "drop" {:resolved true, :existing "drop", :alias "baja"},
    "drop-while"
    {:resolved true, :existing "drop-while", :alias "baja-mientras"},
-   "else"
-   {:existing "else",
-    :alias "más",
-    :docstring "",
-    :comment "or \"otro\""},
    "every?" {:resolved true, :existing "every?", :alias "cada?"},
-   "false" {:existing "false", :alias "falso"},
+   "false" {:special-form true, :existing "false", :alias "falso"},
    "false?" {:resolved true, :existing "false?", :alias "falso?"},
    "filter" {:resolved true, :existing "filter", :alias "forma"},
    "find" {:resolved true, :existing "find", :alias "encuentra"},
@@ -170,7 +165,7 @@
    "take" {:resolved true, :existing "take", :alias "toma"},
    "take-while"
    {:resolved true, :existing "take-while", :alias "toma-mientras"},
-   "true" {:existing "true", :alias "cierto"},
+   "true" {:special-form true, :existing "true", :alias "cierto"},
    "true?" {:resolved true, :existing "true?", :alias "cierto?"},
    "when"
    {:macro true, :resolved true, :existing "when", :alias "cuando"},
@@ -256,12 +251,11 @@
    {:resolved true, :existing "repeatedly", :alias "자꾸"}}},
  "ta"
  {"clojure.core"
-  {"" {:existing ""},
-   "and"
+  {"and"
    {:macro true, :resolved true, :existing "and", :alias "மற்றும்"},
    "apply" {:resolved true, :existing "apply", :alias "செயல்படுத்து"},
    "atom" {:resolved true, :existing "atom", :alias "அணு"},
-   "boolean" {:resolved true, :existing "boolean", :alias "பூலியன்}}"},
+   "boolean" {:resolved true, :existing "boolean", :alias "பூலியன்"},
    "butlast"
    {:resolved true, :existing "butlast", :alias "கடைசியின்றி"},
    "concat" {:resolved true, :existing "concat", :alias "தொடு"},
@@ -289,7 +283,7 @@
    {:resolved true, :existing "drop-while", :alias "விடு-என்னும்வரை"},
    "every?"
    {:resolved true, :existing "every?", :alias "ஒவ்வொன்றுமா?"},
-   "false" {:existing "false", :alias "பொய்மை"},
+   "false" {:special-form true, :existing "false", :alias "பொய்மை"},
    "false?" {:resolved true, :existing "false?", :alias "பொய்மையா?"},
    "filter" {:resolved true, :existing "filter", :alias "வடி"},
    "find" {:resolved true, :existing "find", :alias "கண்டுபிடி"},
@@ -362,7 +356,7 @@
    "take" {:resolved true, :existing "take", :alias "எடு"},
    "take-while"
    {:resolved true, :existing "take-while", :alias "எடு-என்னும்வரை"},
-   "true" {:existing "true", :alias "வாய்மை"},
+   "true" {:special-form true, :existing "true", :alias "வாய்மை"},
    "true?" {:resolved true, :existing "true?", :alias "உண்மையா?"},
    "when"
    {:macro true,
