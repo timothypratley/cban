@@ -15,7 +15,7 @@
        "-"
        language))
 
-(defn generate-refer [translation-map]
+(defn generate-refer-clauses [translation-map]
   (for [[language namespaces] translation-map
         [source-ns translations] namespaces]
     ;; TODO: Warnings?
@@ -36,9 +36,12 @@
           (str " :refer-macros [" (string/join " " macros) "]"))
         "]"))))
 
-(defn refer-from-translation-map [s]
+(defn read-translation-map [s]
   (-> s
       (io/resource)
       (slurp)
-      (edn/read-string)
-      (generate-refer)))
+      (edn/read-string)))
+
+(defn read-translation-maps [ss]
+  (apply merge-with merge
+         (map read-translation-map ss)))
