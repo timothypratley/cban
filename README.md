@@ -10,7 +10,7 @@ A library to enable people to write code in their native written langauge.
 Cban generates cljc files with def and defmacro forms that provide
 aliases for `clojure.core` special forms, macros and functions.
 
-See also [lein-cban](https://github.com/timothypratley/cban)
+See also [lein-cban](https://github.com/timothypratley/lein-cban)
 which is the plugin used to generate the translations.
 You can use that plugin to create your own translations of any namespace.
 

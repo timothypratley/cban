@@ -6,25 +6,35 @@
 (defn macro? [{:keys [macro special-form]}]
   (or macro special-form))
 
+;; TODO: this (not quite) duplicates lein-cban function...
+;; could have lein-cban as a dep... but is there a better way?
+(defn destination-ns [language source-ns]
+  ;; TODO: can we not use dashes?
+  (str "cban."
+       (string/replace source-ns "." "-")
+       "-"
+       language))
+
 (defn generate-refer [translation-map]
-  (string/join
-    "\n"
-    (for [[language namespaces] translation-map
-          [destination-ns translations] namespaces]
-      ;; TODO: Warnings?
-      (let [valid (for [[existing translation] translations
-                        :when (and existing (:alias translation))]
-                    translation)
-            non-macros (->> valid
-                            (remove macro?)
-                            (map :alias))
-            macros (->> valid
-                        (filter macro?)
-                        (map :alias))]
-        (str
-          "(require '[" destination-ns
-          " :refer [" (string/join " " non-macros) "]"
-          " :refer-macros [" (string/join " " macros) "]])\n")))))
+  (for [[language namespaces] translation-map
+        [source-ns translations] namespaces]
+    ;; TODO: Warnings?
+    (let [valid (for [[existing translation] translations
+                      :when (and existing (:alias translation))]
+                  translation)
+          non-macros (->> valid
+                          (remove macro?)
+                          (map :alias))
+          macros (->> valid
+                      (filter macro?)
+                      (map :alias))]
+      (str
+        "'[" (destination-ns language source-ns)
+        (when (seq non-macros)
+          (str " :refer [" (string/join " " non-macros) "]"))
+        (when (seq macros)
+          (str " :refer-macros [" (string/join " " macros) "]"))
+        "]"))))
 
 (defn refer-from-translation-map [s]
   (-> s
