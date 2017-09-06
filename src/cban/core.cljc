@@ -36,6 +36,12 @@
           (str " :refer-macros [" (string/join " " macros) "]"))
         "]"))))
 
+(defn generate-require-statement []
+  (str
+    "(require "
+    (string/join " " (generate-refer-clauses translations))
+    ")"))
+
 (defn read-translation-map [s]
   (-> s
       (io/resource)
