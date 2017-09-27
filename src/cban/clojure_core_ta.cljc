@@ -4,32 +4,55 @@
 
 (defmacro மற்றும்
   [& body]
-  `(clojure.core/and ~@body))
+  `(and ~@body))
 
-(def செயல்படுத்து
-  clojure.core/apply)
+(defn செயல்படுத்து
+  ([f args]
+   (apply f args))
+  ([f x args]
+   (apply f x args))
+  ([f x y args]
+   (apply f x y args))
+  ([f x y z args]
+   (apply f x y z args))
+  ([f a b c d args]
+   (apply apply f a b c d args)))
 
-(def அணு
-  clojure.core/atom)
+(defn அணு
+  ([x]
+   (atom x))
+  ([x options]
+   (apply atom x options)))
 
-(def பூலியன்
-  clojure.core/boolean)
+(defn பூலியன்
+  ([x]
+   (boolean x)))
 
-(def கடைசியின்றி
-  clojure.core/butlast)
+(defn கடைசியின்றி
+  ([coll]
+   (butlast coll)))
 
-(def தொடு
-  clojure.core/concat)
+(defn தொடு
+  ([]
+   (concat))
+  ([x]
+   (concat x))
+  ([x y]
+   (concat x y))
+  ([x y zs]
+   (apply concat x y zs)))
 
 (defmacro பொறுத்து
   [& body]
-  `(clojure.core/cond ~@body))
+  `(cond ~@body))
 
-(def எண்ணு
-  clojure.core/count)
+(defn எண்ணு
+  ([coll]
+   (count coll)))
 
-(def இறக்கு
-  clojure.core/dec)
+(defn இறக்கு
+  ([x]
+   (dec x)))
 
 (defmacro வரையறு
   [& body]
@@ -43,43 +66,63 @@
   [& body]
   `(do ~@body))
 
-(def செய்யெல்லாம்
-  clojure.core/doall)
+(defn செய்யெல்லாம்
+  ([coll]
+   (doall coll))
+  ([n coll]
+   (doall n coll)))
 
-(def செய்யோட்டம்
-  clojure.core/dorun)
+(defn செய்யோட்டம்
+  ([coll]
+   (dorun coll))
+  ([n coll]
+   (dorun n coll)))
 
 (defmacro செய்வரிசை
   [& body]
-  `(clojure.core/doseq ~@body))
+  `(doseq ~@body))
 
-(def விடு
-  clojure.core/drop)
+(defn விடு
+  ([n]
+   (drop n))
+  ([n coll]
+   (drop n coll)))
 
-(def விடு-என்னும்வரை
-  clojure.core/drop-while)
+(defn விடு-என்னும்வரை
+  ([pred]
+   (drop-while pred))
+  ([pred coll]
+   (drop-while pred coll)))
 
-(def ஒவ்வொன்றுமா?
-  clojure.core/every?)
+(defn ஒவ்வொன்றுமா?
+  ([pred coll]
+   (every? pred coll)))
 
 (defmacro பொய்மை
   [& body]
   `(false ~@body))
 
-(def பொய்மையா?
-  clojure.core/false?)
+(defn பொய்மையா?
+  ([x]
+   (false? x)))
 
-(def வடி
-  clojure.core/filter)
+(defn வடி
+  ([pred]
+   (filter pred))
+  ([pred coll]
+   (filter pred coll)))
 
-(def கண்டுபிடி
-  clojure.core/find)
+(defn கண்டுபிடி
+  ([map key]
+   (find map key)))
 
-(def முதல்
-  clojure.core/first)
+(defn முதல்
+  ([coll]
+   (first coll)))
 
-(def தட்டையாக்கு
-  clojure.core/flatten)
+(defn தட்டையாக்கு
+  ([x]
+   (flatten x)))
 
 (defmacro செயல்கூறு
   [& body]
@@ -87,19 +130,29 @@
 
 (defmacro ஒன்றொன்றுக்கு
   [& body]
-  `(clojure.core/for ~@body))
+  `(for ~@body))
 
-(def பெறு
-  clojure.core/get)
+(defn பெறு
+  ([map key]
+   (get map key))
+  ([map key not-found]
+   (get map key not-found)))
 
-(def புலவெண்-விவரணையாக்கம்
-  clojure.core/hash-map)
+(defn புலவெண்-விவரணையாக்கம்
+  ([]
+   (hash-map))
+  ([keyvals]
+   (apply hash-map keyvals)))
 
-(def புலவெண்-அமைவு
-  clojure.core/hash-set)
+(defn புலவெண்-அமைவு
+  ([]
+   (hash-set))
+  ([keys]
+   (apply hash-set keys)))
 
-(def அடையாளம்
-  clojure.core/identity)
+(defn அடையாளம்
+  ([x]
+   (identity x)))
 
 (defmacro எனில்
   [& body]
@@ -107,100 +160,160 @@
 
 (defmacro இல்லெனில்
   [& body]
-  `(clojure.core/if-not ~@body))
+  `(if-not ~@body))
 
-(def ஏற்று
-  clojure.core/inc)
+(defn ஏற்று
+  ([x]
+   (inc x)))
 
-(def பின்னு
-  clojure.core/interleave)
+(defn பின்னு
+  ([]
+   (interleave))
+  ([c1]
+   (interleave c1))
+  ([c1 c2]
+   (interleave c1 c2))
+  ([c1 c2 colls]
+   (apply interleave c1 c2 colls)))
 
-(def இடைபொருத்து
-  clojure.core/interpose)
+(defn இடைபொருத்து
+  ([sep]
+   (interpose sep))
+  ([sep coll]
+   (interpose sep coll)))
 
-(def கொள்
-  clojure.core/keep)
+(defn கொள்
+  ([f]
+   (keep f))
+  ([f coll]
+   (keep f coll)))
 
-(def கடைசி
-  clojure.core/last)
+(defn கடைசி
+  ([coll]
+   (last coll)))
 
 (defmacro வைத்துக்கொள்
   [& body]
   `(let ~@body))
 
-(def பட்டியல்
-  clojure.core/list)
+(defn பட்டியல்
+  ([items]
+   (apply list items)))
 
 (defmacro சுற்று
   [& body]
   `(loop ~@body))
 
-(def விவரி
-  clojure.core/map)
+(defn விவரி
+  ([f]
+   (map f))
+  ([f coll]
+   (map f coll))
+  ([f c1 c2]
+   (map f c1 c2))
+  ([f c1 c2 c3]
+   (map f c1 c2 c3))
+  ([f c1 c2 c3 colls]
+   (apply map f c1 c2 c3 colls)))
 
-(def அடுத்த
-  clojure.core/next)
+(defn அடுத்த
+  ([coll]
+   (next coll)))
 
-(def அன்று
-  clojure.core/not)
+(defn அன்று
+  ([x]
+   (not x)))
 
 (defmacro அல்லது
   [& body]
-  `(clojure.core/or ~@body))
+  `(or ~@body))
 
-(def அச்சிடு
-  clojure.core/print)
+(defn அச்சிடு
+  ([more]
+   (apply print more)))
 
-(def வரி-அச்சிடு
-  clojure.core/println)
+(defn வரி-அச்சிடு
+  ([more]
+   (apply println more)))
 
-(def வீச்சு
-  clojure.core/range)
+(defn வீச்சு
+  ([]
+   (range))
+  ([end]
+   (range end))
+  ([start end]
+   (range start end))
+  ([start end step]
+   (range start end step)))
 
-(def இறுக்கு
-  clojure.core/reduce)
+(defn இறுக்கு
+  ([f coll]
+   (reduce f coll))
+  ([f val coll]
+   (reduce f val coll)))
 
-(def அகற்று
-  clojure.core/remove)
+(defn அகற்று
+  ([pred]
+   (remove pred))
+  ([pred coll]
+   (remove pred coll)))
 
-(def மீதி
-  clojure.core/rest)
+(defn மீதி
+  ([coll]
+   (rest coll)))
 
-(def புரட்டு
-  clojure.core/reverse)
+(defn புரட்டு
+  ([coll]
+   (reverse coll)))
 
-(def இரண்டாம்
-  clojure.core/second)
+(defn இரண்டாம்
+  ([x]
+   (second x)))
 
-(def வரிசை
-  clojure.core/seq)
+(defn வரிசை
+  ([coll]
+   (seq coll)))
 
-(def அமைவு
-  clojure.core/set)
+(defn அமைவு
+  ([coll]
+   (set coll)))
 
-(def எதாவது
-  clojure.core/some)
+(defn எதாவது
+  ([pred coll]
+   (some pred coll)))
 
-(def தொடை
-  clojure.core/str)
+(defn தொடை
+  ([]
+   (str))
+  ([x]
+   (str x))
+  ([x ys]
+   (apply str x ys)))
 
-(def எடு
-  clojure.core/take)
+(defn எடு
+  ([n]
+   (take n))
+  ([n coll]
+   (take n coll)))
 
-(def எடு-என்னும்வரை
-  clojure.core/take-while)
+(defn எடு-என்னும்வரை
+  ([pred]
+   (take-while pred))
+  ([pred coll]
+   (take-while pred coll)))
 
 (defmacro வாய்மை
   [& body]
   `(true ~@body))
 
-(def உண்மையா?
-  clojure.core/true?)
+(defn உண்மையா?
+  ([x]
+   (true? x)))
 
 (defmacro என்னும்போது
   [& body]
-  `(clojure.core/when ~@body))
+  `(when ~@body))
 
 (defmacro இல்லென்னும்-போது
   [& body]
-  `(clojure.core/when-not ~@body))
+  `(when-not ~@body))

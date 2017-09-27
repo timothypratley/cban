@@ -2,104 +2,158 @@
 
 ;; This file was generated, do not modify it directly
 
-(def agencia
+(defn agencia
   ""
-  clojure.core/agent)
+  ([state options]
+   (apply agent state options)))
 
 (defmacro y
   [& body]
-  `(clojure.core/and ~@body))
+  `(and ~@body))
 
-(def aplica
-  clojure.core/apply)
+(defn aplica
+  ([f args]
+   (apply f args))
+  ([f x args]
+   (apply f x args))
+  ([f x y args]
+   (apply f x y args))
+  ([f x y z args]
+   (apply f x y z args))
+  ([f a b c d args]
+   (apply apply f a b c d args)))
 
-(def átomo
-  clojure.core/atom)
+(defn átomo
+  ([x]
+   (atom x))
+  ([x options]
+   (apply atom x options)))
 
-(def booleano
+(defn booleano
   ""
-  clojure.core/boolean)
+  ([x]
+   (boolean x)))
 
-(def pero-último
+(defn pero-último
   ""
-  clojure.core/butlast)
+  ([coll]
+   (butlast coll)))
 
-(def social
-  clojure.core/concat)
+(defn social
+  ([]
+   (concat))
+  ([x]
+   (concat x))
+  ([x y]
+   (concat x y))
+  ([x y zs]
+   (apply concat x y zs)))
 
 (defmacro dependela
   ""
   [& body]
-  `(clojure.core/cond ~@body))
+  `(cond ~@body))
 
-(def cuenta
-  clojure.core/count)
+(defn cuenta
+  ([coll]
+   (count coll)))
 
-(def extracto
+(defn extracto
   ""
-  clojure.core/dec)
+  ([x]
+   (dec x)))
 
 (defmacro haz
   [& body]
   `(do ~@body))
 
-(def haztodo
+(defn haztodo
   ""
-  clojure.core/doall)
+  ([coll]
+   (doall coll))
+  ([n coll]
+   (doall n coll)))
 
-(def hazcorrer
+(defn hazcorrer
   ""
-  clojure.core/dorun)
+  ([coll]
+   (dorun coll))
+  ([n coll]
+   (dorun n coll)))
 
 (defmacro hazsec
   [& body]
-  `(clojure.core/doseq ~@body))
+  `(doseq ~@body))
 
-(def baja
-  clojure.core/drop)
+(defn baja
+  ([n]
+   (drop n))
+  ([n coll]
+   (drop n coll)))
 
-(def baja-mientras
-  clojure.core/drop-while)
+(defn baja-mientras
+  ([pred]
+   (drop-while pred))
+  ([pred coll]
+   (drop-while pred coll)))
 
-(def cada?
-  clojure.core/every?)
+(defn cada?
+  ([pred coll]
+   (every? pred coll)))
 
 (defmacro falso
   [& body]
   `(false ~@body))
 
-(def falso?
-  clojure.core/false?)
+(defn falso?
+  ([x]
+   (false? x)))
 
-(def forma
-  clojure.core/filter)
+(defn forma
+  ([pred]
+   (filter pred))
+  ([pred coll]
+   (filter pred coll)))
 
-(def encuentra
-  clojure.core/find)
+(defn encuentra
+  ([map key]
+   (find map key)))
 
-(def primero
-  clojure.core/first)
+(defn primero
+  ([coll]
+   (first coll)))
 
-(def aplana
-  clojure.core/flatten)
+(defn aplana
+  ([x]
+   (flatten x)))
 
 (defmacro para
   ""
   [& body]
-  `(clojure.core/for ~@body))
+  `(for ~@body))
 
-(def consigue
-  clojure.core/get)
+(defn consigue
+  ([map key]
+   (get map key))
+  ([map key not-found]
+   (get map key not-found)))
 
-(def hachís-mapa
-  clojure.core/hash-map)
+(defn hachís-mapa
+  ([]
+   (hash-map))
+  ([keyvals]
+   (apply hash-map keyvals)))
 
-(def hachís-pone
+(defn hachís-pone
   ""
-  clojure.core/hash-set)
+  ([]
+   (hash-set))
+  ([keys]
+   (apply hash-set keys)))
 
-(def identidad
-  clojure.core/identity)
+(defn identidad
+  ([x]
+   (identity x)))
 
 (defmacro si
   [& body]
@@ -107,109 +161,161 @@
 
 (defmacro si-no
   [& body]
-  `(clojure.core/if-not ~@body))
+  `(if-not ~@body))
 
-(def carga
+(defn carga
   ""
-  clojure.core/inc)
+  ([x]
+   (inc x)))
 
-(def interpone
-  clojure.core/interpose)
+(defn interpone
+  ([sep]
+   (interpose sep))
+  ([sep coll]
+   (interpose sep coll)))
 
-(def guardar
-  clojure.core/keep)
+(defn guardar
+  ([f]
+   (keep f))
+  ([f coll]
+   (keep f coll)))
 
-(def último
-  clojure.core/last)
+(defn último
+  ([coll]
+   (last coll)))
 
 (defmacro deja
   [& body]
   `(let ~@body))
 
-(def enumera
-  clojure.core/list)
+(defn enumera
+  ([items]
+   (apply list items)))
 
 (defmacro darvuelta
   ""
   [& body]
   `(loop ~@body))
 
-(def mapa
-  clojure.core/map)
+(defn mapa
+  ([f]
+   (map f))
+  ([f coll]
+   (map f coll))
+  ([f c1 c2]
+   (map f c1 c2))
+  ([f c1 c2 c3]
+   (map f c1 c2 c3))
+  ([f c1 c2 c3 colls]
+   (apply map f c1 c2 c3 colls)))
 
-(def próximo
+(defn próximo
   ""
-  clojure.core/next)
+  ([coll]
+   (next coll)))
 
-(def no
-  clojure.core/not)
+(defn no
+  ([x]
+   (not x)))
 
 (defmacro o
   [& body]
-  `(clojure.core/or ~@body))
+  `(or ~@body))
 
-(def imprime
-  clojure.core/print)
+(defn imprime
+  ([more]
+   (apply print more)))
 
-(def imprimeln
+(defn imprimeln
   ""
-  clojure.core/println)
+  ([more]
+   (apply println more)))
 
-(def gama
-  clojure.core/range)
+(defn gama
+  ([]
+   (range))
+  ([end]
+   (range end))
+  ([start end]
+   (range start end))
+  ([start end step]
+   (range start end step)))
 
-(def quita
-  clojure.core/remove)
+(defn quita
+  ([pred]
+   (remove pred))
+  ([pred coll]
+   (remove pred coll)))
 
-(def lodemás
+(defn lodemás
   ""
-  clojure.core/rest)
+  ([coll]
+   (rest coll)))
 
-(def invierte
-  clojure.core/reverse)
+(defn invierte
+  ([coll]
+   (reverse coll)))
 
-(def segundo
-  clojure.core/second)
+(defn segundo
+  ([x]
+   (second x)))
 
-(def sec
+(defn sec
   ""
-  clojure.core/seq)
+  ([coll]
+   (seq coll)))
 
-(def pone
-  clojure.core/set)
+(defn pone
+  ([coll]
+   (set coll)))
 
-(def ventosa
+(defn ventosa
   ""
-  clojure.core/slurp)
+  ([f opts]
+   (apply slurp f opts)))
 
-(def alguno
-  clojure.core/some)
+(defn alguno
+  ([pred coll]
+   (some pred coll)))
 
-(def escupe
+(defn escupe
   ""
-  clojure.core/spit)
+  ([f content options]
+   (apply spit f content options)))
 
-(def crd
+(defn crd
   ""
-  clojure.core/str)
+  ([]
+   (str))
+  ([x]
+   (str x))
+  ([x ys]
+   (apply str x ys)))
 
-(def toma
-  clojure.core/take)
+(defn toma
+  ([n]
+   (take n))
+  ([n coll]
+   (take n coll)))
 
-(def toma-mientras
-  clojure.core/take-while)
+(defn toma-mientras
+  ([pred]
+   (take-while pred))
+  ([pred coll]
+   (take-while pred coll)))
 
 (defmacro cierto
   [& body]
   `(true ~@body))
 
-(def cierto?
-  clojure.core/true?)
+(defn cierto?
+  ([x]
+   (true? x)))
 
 (defmacro cuando
   [& body]
-  `(clojure.core/when ~@body))
+  `(when ~@body))
 
 (defmacro cuando-no
   [& body]
-  `(clojure.core/when-not ~@body))
+  `(when-not ~@body))

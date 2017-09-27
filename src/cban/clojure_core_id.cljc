@@ -8,20 +8,29 @@
 
 (defmacro dan
   [& body]
-  `(clojure.core/and ~@body))
+  `(and ~@body))
 
-(def menerapkan
-  clojure.core/apply)
+(defn menerapkan
+  ([f args]
+   (apply f args))
+  ([f x args]
+   (apply f x args))
+  ([f x y args]
+   (apply f x y args))
+  ([f x y z args]
+   (apply f x y z args))
+  ([f a b c d args]
+   (apply apply f a b c d args)))
 
 (defmacro amengatur
   [& body]
   `(aset ~@body))
 
-(def rekan
-  clojure.core/assoc)
-
-(def rekan-di
-  clojure.core/assoc-in)
+(defn rekan
+  ([map key val]
+   (assoc map key val))
+  ([map key val kvs]
+   (apply assoc map key val kvs)))
 
 (defmacro menetapkan
   [& body]
@@ -43,5 +52,8 @@
   [& body]
   `(let ~@body))
 
-(def berkali-kali
-  clojure.core/repeatedly)
+(defn berkali-kali
+  ([f]
+   (repeatedly f))
+  ([n f]
+   (repeatedly n f)))

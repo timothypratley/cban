@@ -1,7 +1,18 @@
 (ns cban.core
-  (:require [clojure.string :as string]
-            [clojure.edn :as edn]
-            [clojure.java.io :as io]))
+  (:require
+    [clojure.string :as string]
+    [clojure.edn :as edn]
+    [clojure.java.io :as io]))
+
+(defn read-translation-map [s]
+  (-> s
+      (io/resource)
+      (slurp)
+      (edn/read-string)))
+
+(defn read-translation-maps [ss]
+  (apply merge-with merge
+         (map read-translation-map ss)))
 
 (defn macro? [{:keys [macro special-form]}]
   (or macro special-form))
@@ -42,12 +53,30 @@
     (string/join " " (generate-refer-clauses translation-map))
     ")"))
 
-(defn read-translation-map [s]
-  (-> s
-      (io/resource)
-      (slurp)
-      (edn/read-string)))
+(defn generate-refer-clauses-unquoted [translation-map]
+  (for [[language namespaces] translation-map
+        [source-ns translations] namespaces]
+    ;; TODO: Warnings?
+    (let [valid (for [[existing translation] translations
+                      :when (and existing (:alias translation))]
+                  translation)
+          non-macros (->> valid
+                          (remove macro?)
+                          (map :alias))
+          macros (->> valid
+                      (filter macro?)
+                      (map :alias))]
+      (str
+        "[" (destination-ns language source-ns)
+        (when (seq non-macros)
+          (str " :refer [" (string/join " " non-macros) "]"))
+        (when (seq macros)
+          (str " :refer-macros [" (string/join " " macros) "]"))
+        "]"))))
 
-(defn read-translation-maps [ss]
-  (apply merge-with merge
-         (map read-translation-map ss)))
+(defn generate-user-namespace [translation-map]
+  (str
+    "(ns cljs.user\n;; This file was generated, do not modify it directly\n  (:require\n    "
+    (string/join "\n    "
+      (generate-refer-clauses-unquoted translation-map))
+    "))\n"))
