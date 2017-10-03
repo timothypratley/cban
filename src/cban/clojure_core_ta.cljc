@@ -2,9 +2,9 @@
 
 ;; This file was generated, do not modify it directly
 
-(defmacro மற்றும்
+#?(:clj (defmacro மற்றும்
   [& body]
-  `(and ~@body))
+  `(and ~@body)))
 
 (defn செயல்படுத்து
   ([f args]
@@ -15,13 +15,13 @@
    (apply f x y args))
   ([f x y z args]
    (apply f x y z args))
-  ([f a b c d args]
+  ([f a b c d & args]
    (apply apply f a b c d args)))
 
 (defn அணு
   ([x]
    (atom x))
-  ([x options]
+  ([x & options]
    (apply atom x options)))
 
 (defn பூலியன்
@@ -39,12 +39,12 @@
    (concat x))
   ([x y]
    (concat x y))
-  ([x y zs]
+  ([x y & zs]
    (apply concat x y zs)))
 
-(defmacro பொறுத்து
+#?(:clj (defmacro பொறுத்து
   [& body]
-  `(cond ~@body))
+  `(cond ~@body)))
 
 (defn எண்ணு
   ([coll]
@@ -54,17 +54,17 @@
   ([x]
    (dec x)))
 
-(defmacro வரையறு
+#?(:clj (defmacro வரையறு
   [& body]
-  `(def ~@body))
+  `(def ~@body)))
 
-(defmacro வரையறு-செயல்கூறு
+#?(:clj (defmacro வரையறு-செயல்கூறு
   [& body]
-  `(defn ~@body))
+  `(defn ~@body)))
 
-(defmacro செய்
+#?(:clj (defmacro செய்
   [& body]
-  `(do ~@body))
+  `(do ~@body)))
 
 (defn செய்யெல்லாம்
   ([coll]
@@ -78,9 +78,9 @@
   ([n coll]
    (dorun n coll)))
 
-(defmacro செய்வரிசை
+#?(:clj (defmacro செய்வரிசை
   [& body]
-  `(doseq ~@body))
+  `(doseq ~@body)))
 
 (defn விடு
   ([n]
@@ -98,9 +98,9 @@
   ([pred coll]
    (every? pred coll)))
 
-(defmacro பொய்மை
+#?(:clj (defmacro பொய்மை
   [& body]
-  `(false ~@body))
+  `(false ~@body)))
 
 (defn பொய்மையா?
   ([x]
@@ -124,13 +124,13 @@
   ([x]
    (flatten x)))
 
-(defmacro செயல்கூறு
+#?(:clj (defmacro செயல்கூறு
   [& body]
-  `(fn ~@body))
+  `(fn ~@body)))
 
-(defmacro ஒன்றொன்றுக்கு
+#?(:clj (defmacro ஒன்றொன்றுக்கு
   [& body]
-  `(for ~@body))
+  `(for ~@body)))
 
 (defn பெறு
   ([map key]
@@ -141,26 +141,26 @@
 (defn புலவெண்-விவரணையாக்கம்
   ([]
    (hash-map))
-  ([keyvals]
+  ([& keyvals]
    (apply hash-map keyvals)))
 
 (defn புலவெண்-அமைவு
   ([]
    (hash-set))
-  ([keys]
+  ([& keys]
    (apply hash-set keys)))
 
 (defn அடையாளம்
   ([x]
    (identity x)))
 
-(defmacro எனில்
+#?(:clj (defmacro எனில்
   [& body]
-  `(if ~@body))
+  `(if ~@body)))
 
-(defmacro இல்லெனில்
+#?(:clj (defmacro இல்லெனில்
   [& body]
-  `(if-not ~@body))
+  `(if-not ~@body)))
 
 (defn ஏற்று
   ([x]
@@ -173,7 +173,7 @@
    (interleave c1))
   ([c1 c2]
    (interleave c1 c2))
-  ([c1 c2 colls]
+  ([c1 c2 & colls]
    (apply interleave c1 c2 colls)))
 
 (defn இடைபொருத்து
@@ -192,17 +192,17 @@
   ([coll]
    (last coll)))
 
-(defmacro வைத்துக்கொள்
+#?(:clj (defmacro வைத்துக்கொள்
   [& body]
-  `(let ~@body))
+  `(let ~@body)))
 
 (defn பட்டியல்
-  ([items]
+  ([& items]
    (apply list items)))
 
-(defmacro சுற்று
+#?(:clj (defmacro சுற்று
   [& body]
-  `(loop ~@body))
+  `(loop ~@body)))
 
 (defn விவரி
   ([f]
@@ -213,7 +213,7 @@
    (map f c1 c2))
   ([f c1 c2 c3]
    (map f c1 c2 c3))
-  ([f c1 c2 c3 colls]
+  ([f c1 c2 c3 & colls]
    (apply map f c1 c2 c3 colls)))
 
 (defn அடுத்த
@@ -224,16 +224,16 @@
   ([x]
    (not x)))
 
-(defmacro அல்லது
+#?(:clj (defmacro அல்லது
   [& body]
-  `(or ~@body))
+  `(or ~@body)))
 
 (defn அச்சிடு
-  ([more]
+  ([& more]
    (apply print more)))
 
 (defn வரி-அச்சிடு
-  ([more]
+  ([& more]
    (apply println more)))
 
 (defn வீச்சு
@@ -287,7 +287,7 @@
    (str))
   ([x]
    (str x))
-  ([x ys]
+  ([x & ys]
    (apply str x ys)))
 
 (defn எடு
@@ -302,18 +302,18 @@
   ([pred coll]
    (take-while pred coll)))
 
-(defmacro வாய்மை
+#?(:clj (defmacro வாய்மை
   [& body]
-  `(true ~@body))
+  `(true ~@body)))
 
 (defn உண்மையா?
   ([x]
    (true? x)))
 
-(defmacro என்னும்போது
+#?(:clj (defmacro என்னும்போது
   [& body]
-  `(when ~@body))
+  `(when ~@body)))
 
-(defmacro இல்லென்னும்-போது
+#?(:clj (defmacro இல்லென்னும்-போது
   [& body]
-  `(when-not ~@body))
+  `(when-not ~@body)))

@@ -2,14 +2,14 @@
 
 ;; This file was generated, do not modify it directly
 
-(defmacro 배열을얻을
+#?(:clj (defmacro 배열을얻을
   "fun , "
   [& body]
-  `(aget ~@body))
+  `(aget ~@body)))
 
-(defmacro 과
+#?(:clj (defmacro 과
   [& body]
-  `(and ~@body))
+  `(and ~@body)))
 
 (defn 대다
   ([f args]
@@ -20,38 +20,38 @@
    (apply f x y args))
   ([f x y z args]
    (apply f x y z args))
-  ([f a b c d args]
+  ([f a b c d & args]
    (apply apply f a b c d args)))
 
-(defmacro 세트
+#?(:clj (defmacro 세트
   [& body]
-  `(aset ~@body))
+  `(aset ~@body)))
 
 (defn 동무
   ([map key val]
    (assoc map key val))
-  ([map key val kvs]
+  ([map key val & kvs]
    (apply assoc map key val kvs)))
 
-(defmacro 밝히다
+#?(:clj (defmacro 밝히다
   [& body]
-  `(def ~@body))
+  `(def ~@body)))
 
-(defmacro 함수를정의
+#?(:clj (defmacro 함수를정의
   [& body]
-  `(defn ~@body))
+  `(defn ~@body)))
 
-(defmacro 기능
+#?(:clj (defmacro 기능
   [& body]
-  `(fn ~@body))
+  `(fn ~@body)))
 
-(defmacro 만약
+#?(:clj (defmacro 만약
   [& body]
-  `(if ~@body))
+  `(if ~@body)))
 
-(defmacro 방해
+#?(:clj (defmacro 방해
   [& body]
-  `(let ~@body))
+  `(let ~@body)))
 
 (defn 자꾸
   ([f]

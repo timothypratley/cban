@@ -4,12 +4,12 @@
 
 (defn agencia
   ""
-  ([state options]
+  ([state & options]
    (apply agent state options)))
 
-(defmacro y
+#?(:clj (defmacro y
   [& body]
-  `(and ~@body))
+  `(and ~@body)))
 
 (defn aplica
   ([f args]
@@ -20,13 +20,13 @@
    (apply f x y args))
   ([f x y z args]
    (apply f x y z args))
-  ([f a b c d args]
+  ([f a b c d & args]
    (apply apply f a b c d args)))
 
 (defn átomo
   ([x]
    (atom x))
-  ([x options]
+  ([x & options]
    (apply atom x options)))
 
 (defn booleano
@@ -46,13 +46,13 @@
    (concat x))
   ([x y]
    (concat x y))
-  ([x y zs]
+  ([x y & zs]
    (apply concat x y zs)))
 
-(defmacro dependela
+#?(:clj (defmacro dependela
   ""
   [& body]
-  `(cond ~@body))
+  `(cond ~@body)))
 
 (defn cuenta
   ([coll]
@@ -63,9 +63,9 @@
   ([x]
    (dec x)))
 
-(defmacro haz
+#?(:clj (defmacro haz
   [& body]
-  `(do ~@body))
+  `(do ~@body)))
 
 (defn haztodo
   ""
@@ -81,9 +81,9 @@
   ([n coll]
    (dorun n coll)))
 
-(defmacro hazsec
+#?(:clj (defmacro hazsec
   [& body]
-  `(doseq ~@body))
+  `(doseq ~@body)))
 
 (defn baja
   ([n]
@@ -101,9 +101,9 @@
   ([pred coll]
    (every? pred coll)))
 
-(defmacro falso
+#?(:clj (defmacro falso
   [& body]
-  `(false ~@body))
+  `(false ~@body)))
 
 (defn falso?
   ([x]
@@ -127,10 +127,10 @@
   ([x]
    (flatten x)))
 
-(defmacro para
+#?(:clj (defmacro para
   ""
   [& body]
-  `(for ~@body))
+  `(for ~@body)))
 
 (defn consigue
   ([map key]
@@ -141,27 +141,27 @@
 (defn hachís-mapa
   ([]
    (hash-map))
-  ([keyvals]
+  ([& keyvals]
    (apply hash-map keyvals)))
 
 (defn hachís-pone
   ""
   ([]
    (hash-set))
-  ([keys]
+  ([& keys]
    (apply hash-set keys)))
 
 (defn identidad
   ([x]
    (identity x)))
 
-(defmacro si
+#?(:clj (defmacro si
   [& body]
-  `(if ~@body))
+  `(if ~@body)))
 
-(defmacro si-no
+#?(:clj (defmacro si-no
   [& body]
-  `(if-not ~@body))
+  `(if-not ~@body)))
 
 (defn carga
   ""
@@ -184,18 +184,18 @@
   ([coll]
    (last coll)))
 
-(defmacro deja
+#?(:clj (defmacro deja
   [& body]
-  `(let ~@body))
+  `(let ~@body)))
 
 (defn enumera
-  ([items]
+  ([& items]
    (apply list items)))
 
-(defmacro darvuelta
+#?(:clj (defmacro darvuelta
   ""
   [& body]
-  `(loop ~@body))
+  `(loop ~@body)))
 
 (defn mapa
   ([f]
@@ -206,7 +206,7 @@
    (map f c1 c2))
   ([f c1 c2 c3]
    (map f c1 c2 c3))
-  ([f c1 c2 c3 colls]
+  ([f c1 c2 c3 & colls]
    (apply map f c1 c2 c3 colls)))
 
 (defn próximo
@@ -218,17 +218,17 @@
   ([x]
    (not x)))
 
-(defmacro o
+#?(:clj (defmacro o
   [& body]
-  `(or ~@body))
+  `(or ~@body)))
 
 (defn imprime
-  ([more]
+  ([& more]
    (apply print more)))
 
 (defn imprimeln
   ""
-  ([more]
+  ([& more]
    (apply println more)))
 
 (defn gama
@@ -271,7 +271,7 @@
 
 (defn ventosa
   ""
-  ([f opts]
+  ([f & opts]
    (apply slurp f opts)))
 
 (defn alguno
@@ -280,7 +280,7 @@
 
 (defn escupe
   ""
-  ([f content options]
+  ([f content & options]
    (apply spit f content options)))
 
 (defn crd
@@ -289,7 +289,7 @@
    (str))
   ([x]
    (str x))
-  ([x ys]
+  ([x & ys]
    (apply str x ys)))
 
 (defn toma
@@ -304,18 +304,18 @@
   ([pred coll]
    (take-while pred coll)))
 
-(defmacro cierto
+#?(:clj (defmacro cierto
   [& body]
-  `(true ~@body))
+  `(true ~@body)))
 
 (defn cierto?
   ([x]
    (true? x)))
 
-(defmacro cuando
+#?(:clj (defmacro cuando
   [& body]
-  `(when ~@body))
+  `(when ~@body)))
 
-(defmacro cuando-no
+#?(:clj (defmacro cuando-no
   [& body]
-  `(when-not ~@body))
+  `(when-not ~@body)))

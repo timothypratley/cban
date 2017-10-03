@@ -2,13 +2,13 @@
 
 ;; This file was generated, do not modify it directly
 
-(defmacro amendapatkan
+#?(:clj (defmacro amendapatkan
   [& body]
-  `(aget ~@body))
+  `(aget ~@body)))
 
-(defmacro dan
+#?(:clj (defmacro dan
   [& body]
-  `(and ~@body))
+  `(and ~@body)))
 
 (defn menerapkan
   ([f args]
@@ -19,38 +19,38 @@
    (apply f x y args))
   ([f x y z args]
    (apply f x y z args))
-  ([f a b c d args]
+  ([f a b c d & args]
    (apply apply f a b c d args)))
 
-(defmacro amengatur
+#?(:clj (defmacro amengatur
   [& body]
-  `(aset ~@body))
+  `(aset ~@body)))
 
 (defn rekan
   ([map key val]
    (assoc map key val))
-  ([map key val kvs]
+  ([map key val & kvs]
    (apply assoc map key val kvs)))
 
-(defmacro menetapkan
+#?(:clj (defmacro menetapkan
   [& body]
-  `(def ~@body))
+  `(def ~@body)))
 
-(defmacro dfungsi
+#?(:clj (defmacro dfungsi
   [& body]
-  `(defn ~@body))
+  `(defn ~@body)))
 
-(defmacro fungsi
+#?(:clj (defmacro fungsi
   [& body]
-  `(fn ~@body))
+  `(fn ~@body)))
 
-(defmacro jika
+#?(:clj (defmacro jika
   [& body]
-  `(if ~@body))
+  `(if ~@body)))
 
-(defmacro membiarkan
+#?(:clj (defmacro membiarkan
   [& body]
-  `(let ~@body))
+  `(let ~@body)))
 
 (defn berkali-kali
   ([f]
